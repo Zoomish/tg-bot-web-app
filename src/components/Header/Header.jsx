@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../Button';
+import Button from '../Button/Button';
 import './Header.css'
-import { useTelegram } from '../../../hooks/useTelegram';
+import { useTelegram } from '../../hooks/useTelegram';
 
 const Header = () => {
     const{user, onClose}=useTelegram();
