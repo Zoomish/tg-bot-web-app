@@ -14,12 +14,15 @@ const products = [
     {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
 ]
 
+const getTotalPrice=(items=[])=>{
+    return items.reduce((acc,item)=>{
+        return acc+=item.price
+    },0)
+}
 
 const ProductList = () => {
-    const [addedItems, setAddedItems]=useState([]);
-    const {tg, queryId}=useTelegram();
-    
-
+    const [addedItems, setAddedItems]=useState([])
+    const {tg}=useTelegram()
 
     const onAdd=(product)=>{
         const alreadyAdded = addedItems.find(item => item.id === product.id);
@@ -30,7 +33,9 @@ const ProductList = () => {
         } else {
             newItems = [...addedItems, product];
         }
+
         setAddedItems(newItems)
+
         if(newItems.length==0){
             tg.MainButton.hide();
         }else{
@@ -40,7 +45,6 @@ const ProductList = () => {
             })
         }
     }
-
 
     return (
         <div className='list'>
